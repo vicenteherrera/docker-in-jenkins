@@ -3,7 +3,9 @@
 _Is running Docker in Docker secure?_ **NO**
 
 Based on https://blog.container-solutions.com/running-docker-in-jenkins-in-docker  
-Read also: https://devopscube.com/run-docker-in-docker/  
+Read also: 
+* https://devopscube.com/run-docker-in-docker/  
+* https://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/
 
 ```bash
 docker build -t myjenk .
@@ -12,11 +14,11 @@ docker run -d -v /var/run/docker.sock:/var/run/docker.sock \
        -p 8080:8080 --name myjenk myjenk
 ```
 
-* Open the Jenkins home page in a browser http://127.0.01:8080 
+* Open the Jenkins home page in a browser http://127.0.01:8080
 * When the browser prompts you for the administrator password, execute this on the terminal to get it:
   `docker exec -it myjenk cat /var/jenkins_home/secrets/initialAdminPassword`
-* Install suggested plugins
-* Create first admin user, confirm local URL
+* Install suggested plugins if you want (slower), but you don't need them for this example.
+* Create first admin user, confirm local URL.
 * Click the "create new jobs" link.
 * Enter the item name (e.g. "docker-test"), select "Freestyle project" and click OK.
 * On the configuration page, click "Add build step" then "Execute shell".
